@@ -2,7 +2,7 @@ const issuedBooks = [];
 
 function addIssuedBook(bookName, issuedTo) {
   const id = issuedBooks.length + 1;
-  const issuedTime = new Date();
+  const issuedTime = new Date().toLocaleDateString() + " at " + new Date().toLocaleTimeString(navigator.language, {hour : "2-digit", minute : "2-digit"});
   const status = "Not Returned";
   issuedBooks.push({ id, bookName, issuedTo, issuedTime, status });
   updateTable();
@@ -17,8 +17,8 @@ function updateTable() {
       <td>${book.id}</td>
       <td>${book.bookName}</td>
       <td>${book.issuedTo}</td>
-      <td>${book.issuedTime.toLocaleString()}</td>
-      <td class="status-cell" data-book-id="${book.id}">${book.status}</td>`;
+      <td>${book.issuedTime}</td>
+      <td>${book.status}</td>`;
   }
 }
 
